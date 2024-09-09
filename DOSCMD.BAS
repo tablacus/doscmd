@@ -1,0 +1,1 @@
+10 CMD "BPBINFO.COM A:"
