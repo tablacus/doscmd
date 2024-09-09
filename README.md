@@ -43,7 +43,7 @@ https://webmsx.org/?MACHINE=MSX1J&DISKA=https://github.com/tablacus/doscmd/raw/m
 MSX2  
 https://webmsx.org/?MACHINE=MSX2J&DISKA=https://github.com/tablacus/doscmd/raw/main/doscmd.dsk
 
-MSX turbo R
+MSX turbo R  
 https://webmsx.org/?MACHINE=MSXTR&DISKA=https://github.com/tablacus/doscmd/raw/main/doscmd.dsk
 
 
