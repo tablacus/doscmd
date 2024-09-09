@@ -37,6 +37,8 @@ CMD "A:\DIR\FOO.COM BAR"
 ```
 ## サンプル
 
+WebMSXを使ったサンプルです。BPBINFO.COMを実行しています。
+
 MSX1  
 https://webmsx.org/?MACHINE=MSX1J&DISKA=https://github.com/tablacus/doscmd/raw/main/doscmd.dsk
 
