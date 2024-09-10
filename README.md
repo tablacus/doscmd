@@ -35,3 +35,17 @@ DOS2カーネルを使っている場合とTablacus Disk ROM Liteを使ってい
 ```bas
 CMD "A:\DIR\FOO.COM BAR"
 ```
+## サンプル
+
+WebMSXを使ったサンプルです。BPBINFO.COMを実行しています。
+
+MSX1  
+https://webmsx.org/?MACHINE=MSX1J&DISKA=https://github.com/tablacus/doscmd/raw/main/doscmd.dsk
+
+MSX2  
+https://webmsx.org/?MACHINE=MSX2J&DISKA=https://github.com/tablacus/doscmd/raw/main/doscmd.dsk
+
+MSX turbo R  
+https://webmsx.org/?MACHINE=MSXTR&DISKA=https://github.com/tablacus/doscmd/raw/main/doscmd.dsk
+
+
