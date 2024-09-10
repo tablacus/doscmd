@@ -48,4 +48,8 @@ https://webmsx.org/?MACHINE=MSX2J&DISKA=https://github.com/tablacus/doscmd/raw/m
 MSX turbo R  
 https://webmsx.org/?MACHINE=MSXTR&DISKA=https://github.com/tablacus/doscmd/raw/main/doscmd.dsk
 
+## ライセンス
 
+[Apache-2.0 license](https://github.com/tablacus/doscmd/blob/main/LICENSE)のオープンソースです。
+
+※有料、無料にかかわらず同人ソフトに組み込んで配布してもらっても問題ありません。
