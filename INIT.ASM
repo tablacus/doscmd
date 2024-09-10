@@ -115,7 +115,7 @@ MSX1:
 TITLE:
 	DB	"Tablacus DOS$"
 TITLE2:
-	DB	" cmd v0.01"
+	DB	" cmd v0.02"
 	DB	00DH,00AH,'$'
 TITLET:
 	DB	"(ROM)$"
