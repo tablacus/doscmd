@@ -3,7 +3,7 @@
 Tablacus DOS cmdはMSXのBASICからDOSコマンドを実行させるソフトです。  
 64KBのディスクカーネルを持つMSXで実行できます。
 
-ディスクカーネルは[Tablacus Disk ROM Lite](https://github.com/tablacus/TablacusDiskRomLite)でも大丈夫です。
+ディスクカーネルは[Tablacus Disk ROM Lite](https://github.com/tablacus/TablacusDiskRomLite)の64KB対応版でも大丈夫です。
 
 64KBのRAMの前半48KBをDOS用として、後半16KBをBASIC用として使用します。
 
