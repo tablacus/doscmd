@@ -22,6 +22,13 @@ BLOAD"DOSCMD.BIN",R
 20 RUN"DOSCMD.BAS"
 ```
 
+## アンインストール
+
+```
+POKE&HF676,1:POKE&HF677,&H80:POKE&H8000,0:POKE&H8001,0:NEW
+```
+`NEW`の代わりに`RUN"ファイル名.BAS"`でも良いです。
+
 ## DOSコマンドの実行
 
 引数「BAR」でFOO.COMを実行する場合は以下のようにします。実行ファイルの指定には必ず拡張子の「.com」も必要です。
