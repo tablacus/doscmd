@@ -7,6 +7,8 @@ Tablacus DOS cmdはMSXのBASICからDOSコマンドを実行させるソフト�
 
 64KBのRAMの前半48KBをDOS用として、後半16KBをBASIC用として使用します。
 
+DOS2とマッパーRAMを使用して両方とも64KBのRAMをスイッチして使用する[Tablacus DOS cmd 2](https://github.com/tablacus/doscmd2)ができました。
+
 ## インストール
 
 ```bas
