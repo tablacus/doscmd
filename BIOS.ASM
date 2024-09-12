@@ -15,6 +15,32 @@ CPM_CONOUT:
 	JP	CONOUT1
 BASSP:
 	DW	0
+
+ENATBL:
+	LD	D,A	;基本スロットに出力する値
+			;対象の拡張スロットを切り替えるために基本スロットを切り替える
+	LD	A,H
+	AND	3
+	LD	C,A	;C=スロット#
+
+	;スロットテーブル
+	LD	L,LOW SLTTBL
+	ADD	A,L
+	LD	L,A
+			;対象の拡張スロットを切り替えるために基本スロットを切り替える
+	LD	A,C	;C=スロット#
+	RRCA
+	RRCA		;ページ3
+	LD	C,A
+	LD	A,D	;基本スロットに出力する値
+	AND	03FH	;ページ3マスク
+	OR	C
+	LD	E,A	;基本スロットでページ3にスロットを割り当てる
+	LD	A,H
+	AND	00CH
+	LD	H,HIGH SLTTBL
+	RET
+
 BASIC_START2	EQU	$+1
 ;
 ; インタースロットコール(DOS1専用)
@@ -177,7 +203,7 @@ _ENASLT_00H:
 	AND	0FCH	;ページ0マスク
 	OR	C
 	BIT	7,H
-	JR	Z,ENASLT_NOEXT
+	JP	Z,ENASLT_NOEXT
 			;拡張スロットの処理
 	PUSH	DE
 	LD	B,H
@@ -229,36 +255,7 @@ ENATBL_BIOS_CHECK:
 	JR	Z,ENASLT_BIOS
 	LD	H,L
 	LD	A,D
-ENATBL:
-	LD	D,A	;基本スロットに出力する値
-			;対象の拡張スロットを切り替えるために基本スロットを切り替える
-	LD	A,H
-	AND	3
-	LD	C,A	;C=スロット#
-
-	;スロットテーブル
-	LD	L,LOW SLTTBL
-	ADD	A,L
-	LD	L,A
-			;対象の拡張スロットを切り替えるために基本スロットを切り替える
-	LD	A,C	;C=スロット#
-	RRCA
-	RRCA		;ページ3
-	LD	C,A
-	LD	A,D	;基本スロットに出力する値
-	AND	03FH	;ページ3マスク
-	OR	C
-	LD	E,A	;基本スロットでページ3にスロットを割り当てる
-	LD	A,H
-	AND	00CH
-	LD	H,HIGH SLTTBL
-	RET
-ENASLT_NOEXT_00H:
-
-ENASLT_NOEXT:				;スロットが拡張されていない場合
-	OUT	(0A8H),A
-	RET
-
+	JP	ENATBL
 ;
 ;ページ1専門のENASLT
 ;in
@@ -278,7 +275,7 @@ ENASLT_40H:
 	AND	B
 	OR	C
 	BIT	7,L
-	JR	Z,ENASLT_NOEXT
+	JP	Z,ENASLT_NOEXT
 			;拡張スロットの処理
 	PUSH	DE
 	CALL	ENATBL_BIOS_CHECK
