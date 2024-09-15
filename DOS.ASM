@@ -15,6 +15,8 @@ BDOS1:
 	JP	Z,0		;だから、ここのアドレスをBDOS0+011HもしくはBDOS0+012Hにする
 	LD	(SAVE_SP),SP
 	LD	(SAVE_A),A
+	LD	(SAVE_IX),IX
+	LD	(SAVE_IY),IY
 	LD	A,C
 	CP	062H		;_TERM エラーコードを返して終了
 	JR	Z,TERM
@@ -106,7 +108,7 @@ SAVEFCB1:
 	POP	BC
 BDOS3:
 	XOR	A
-	LD	(SAVE_IX+1),A
+	LD	(IS_SAVE_IX_VAUE),A
 	LD	A,C
 	CP	040H		;最初のエントリ検索
 	JR	C,BDOS3IX	;次のエントリ検索
@@ -117,7 +119,7 @@ BDOS3:
 	JR	C,BDOS3IX
 	CP	080H		;
 	JR	NC,BDOS3IX
-	LD	(SAVE_IX),IX
+	LD	(IS_SAVE_IX_VAUE),A
 	PUSH	BC
 	PUSH	DE
 	PUSH	HL
@@ -179,11 +181,16 @@ BDOS_EXEC:
 	CALL	BDOS
 
 	PUSH	AF
-
-	LD	A,(SAVE_IX+1)		;最初のエントリ検索 + 次のエントリ検索
-	OR	A
+	LD	A,(SAVE_C)
+	CP	01BH			;アロケーション情報の獲得
+	JR	Z,BDOS4IX
+	CP	06FH			;MSX-DOSのバージョン番号の獲得
 	JR	Z,BDOS4IX
 	LD	IX,(SAVE_IX)
+	LD	IY,(SAVE_IY)
+	LD	A,(IS_SAVE_IX_VAUE)		;最初のエントリ検索 + 次のエントリ検索
+	OR	A
+	JR	Z,BDOS4IX
 	PUSH	BC
 	PUSH	DE
 	PUSH	HL
@@ -263,7 +270,6 @@ BDOS8:
 	POP	BC
 BDOS6:
 	POP	AF
-S09X1:
 	LD	SP,(SAVE_SP)
 	RET
 
@@ -289,6 +295,12 @@ _SYS09:		;_STROUT 文字列出力
 	CALL	BDOS
 	POP	DE
 	JR	_SYS09
+
+S09X1:
+	LD	SP,(SAVE_SP)
+	LD	IX,(SAVE_IX)
+	LD	IY,(SAVE_IY)
+	RET
 
 RDABS:
 	LD	A,(_DTA+1)
@@ -392,9 +404,13 @@ _DTA:
 	DW	0
 SAVE_C:
 	DB	0
-SAVE_DE:
-	DW	0
+IS_SAVE_IX_VAUE:
+	DB	0
 SAVE_IX:
+	DW	0
+SAVE_IY:
+	DW	0
+SAVE_DE:
 	DW	0
 SAVE_HL:
 	DW	0
