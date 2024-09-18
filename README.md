@@ -33,16 +33,16 @@ POKE&HF676,1:POKE&HF677,&H80:POKE&H8000,0:POKE&H8001,0:POKE&HFE0D,&HC9:NEW
 
 ## DOSコマンドの実行
 
-引数「BAR」でFOO.COMを実行する場合は以下のようにします。実行ファイルの指定には必ず拡張子の「.com」も必要です。
+引数「BAR」でFOO.COMを実行する場合は以下のようにします。v0.10から実行ファイルの指定に拡張子の「.com」が不要になりました。
 
 ```bas
-CMD "FOO.COM BAR"
+CMD "FOO BAR"
 ```
 
 DOS2カーネルを使っている場合とTablacus Disk ROM Liteを使っている場合はCOMファイルの指定に階層ディレクトリを指定することができます。
 
 ```bas
-CMD "A:\DIR\FOO.COM BAR"
+CMD "A:\DIR\FOO BAR"
 ```
 ## サンプル
 
